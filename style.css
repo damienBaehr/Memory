@@ -1,13 +1,13 @@
 .card{
-  width: 200px;
+  width: 150px;
   display: flex;
-  height: 250px;
-  border: 1px solid black;
+  height: 200px;
   cursor: pointer;
-  background-size: 60%;
   background-position: center;
+  background-size: 100%;
   background-repeat: no-repeat;
 }
+
 #grid-container{
   width: 100%;
   height: 100%;

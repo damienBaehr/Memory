@@ -19,9 +19,8 @@ const imagePaths = [];
     const imageURL = `${'/assets/'}perso${i}.png`;
     imagePaths.push(imageURL);
   }
-
+  bgIcon = imagePaths.slice();
 colors = ["red", "blue", "green", "yellow", "purple", "orange", "pink", "brown", "black","grey","lightblue","darkblue","#cecece", "#3b0728", "#c0a441", "#4bff4c","#9d4137"];
-bgIcon = imagePaths.slice();
 
 // Faire un switch case : pour numberOfPairs = 4, 8, 12, 16, en modifiant la valeur de numberOfPairs
 
@@ -49,9 +48,9 @@ cards.forEach(card => {
     // Ajout d'un attribut data-card-number pour qu'on puisse les identifier et les comparer
     cardDiv.dataset.cardNumber = card.number;
     // Mettre le numéro de la carte dans la div (A VIRER)
-    cardDiv.textContent = card.number;
+    // cardDiv.textContent = card.number;
     //Mettre la couleur de la carte en background 
-    cardDiv.style.backgroundColor = "white";
+    cardDiv.style.backgroundImage = 'url("/assets/CardBackground.png")';
     // Si le nombre de paires est supérieur ou égal à 12, on change la taille des cartes
     if (numberOfPairs >= 12) {
         cardDiv.style.width = '140px'; // Par exemple, définissez la largeur à 50px
@@ -80,8 +79,8 @@ cards.forEach(card => {
                 cardDiv.style.backgroundImage = `url('${card.bg}')`;
                 if (firstCard.dataset.cardNumber !== cardDiv.dataset.cardNumber) {
                     setTimeout(() => {
-                        testFirstCard.style.backgroundImage = 'none';
-                        cardDiv.style.backgroundImage = 'none';
+                        testFirstCard.style.backgroundImage = 'url("/assets/CardBackground.png")';
+                        cardDiv.style.backgroundImage = 'url("/assets/CardBackground.png")';
                     }, 1000);
                 } else {
                     pairs.push(cardDiv, firstCard);  
@@ -93,6 +92,7 @@ cards.forEach(card => {
                 firstCard = null;
                 }
                 lastClickedCard = cardDiv;
+                console.log('lastClickedCard', lastClickedCard);
             }
             
         }

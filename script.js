@@ -1,141 +1,153 @@
-const gridContainer = document.getElementById('tableau');
-const card = document.getElementsByClassName('card');
-const restart = document.querySelector('button')
+let initialNumberOfPairs = 8;
 
+function initGame() {
+  const gridContainer = document.getElementById("tableau");
+  const restartButton = document.querySelector("button");
 
+  let clicks = 0;
+  let firstCard = null;
+  let lastClickedCard = null;
 
+  let gameInitialized = false;
 
-let clicks = 0;
-let firstCard = null;
-let lastClickedCard = null;
+  const colors = ["red","blue","green","yellow","purple","orange","pink","brown","black","grey","lightblue","darkblue","#cecece","#3b0728","#c0a441","#4bff4c","#9d4137",
+  ];
+  let numberOfPairs = initialNumberOfPairs;
+  let cards = [];
+  const cardColor = [];
+  const pairs = [];
 
-function clearGrid() {
-    // Sélectionnez le conteneur gridContainer
-    const gridContainer = document.getElementById('tableau');
-
-    // Supprimez tous les éléments enfants du conteneur
-    while (gridContainer.firstChild) {
-        gridContainer.removeChild(gridContainer.firstChild);
-    }
-}
-
-
-const imagePaths = [];
+  const bgIcon = [];
 
   for (let i = 0; i <= 12; i++) {
-    const imageURL = `${'/assets/'}perso${i}.png`;
-    imagePaths.push(imageURL);
+    const imageURL = `${"/assets/"}perso${i}.png`;
+    bgIcon.push(imageURL);
   }
-  bgIcon = imagePaths.slice();
-colors = ["red", "blue", "green", "yellow", "purple", "orange", "pink", "brown", "black","grey","lightblue","darkblue","#cecece", "#3b0728", "#c0a441", "#4bff4c","#9d4137"];
 
-// Faire un switch case : pour numberOfPairs = 4, 8, 12, 16, en modifiant la valeur de numberOfPairs
-
-numberOfPairs= 8;
-cards=[];
-cardColor=[];
-pairs=[];
-
-// Boucle for qui va créer les cartes
-for (let i = 1; i <= numberOfPairs; i++) {
-    // On crée un objet card avec un numéro et une couleur
-    const cardNumber = i + 1;
-    // On ajoute deux fois la même carte dans le tableau cards
-    cards.push({number : cardNumber, color: colors[i], bg : bgIcon[i]  });
-    cards.push({number : cardNumber, color: colors[i], bg : bgIcon[i] });
-
-    cardColor.push(colors[i]);
-}
-// Mélangez les cartes de manière aléatoire
-shuffleArray(cards);
-cards.forEach(card => {
-    // Ajout d'une div avec la classe card
-    const cardDiv = document.createElement('div');
-    cardDiv.className = 'card';
-    // Ajout d'un attribut data-card-number pour qu'on puisse les identifier et les comparer
-    cardDiv.dataset.cardNumber = card.number;
-    // Mettre le numéro de la carte dans la div (A VIRER)
-    // cardDiv.textContent = card.number;
-    //Mettre la couleur de la carte en background 
-    cardDiv.style.backgroundImage = 'url("/assets/CardBackground.png")';
-    // Si le nombre de paires est supérieur ou égal à 12, on change la taille des cartes
-    if (numberOfPairs >= 12) {
-        cardDiv.style.width = '140px'; // Par exemple, définissez la largeur à 50px
-        cardDiv.style.height = '170px'; // Par exemple, définissez la largeur à 50px
+  function cardClickHandler(cardDiv, card) {
+    if (clicks < 2) {
+      if (cardDiv !== lastClickedCard && !pairs.includes(cardDiv)) {
+        let testFirstCard = firstCard;
+        clicks++;
+        console.log("clicks", clicks);
+        if (clicks === 1) {
+          firstCard = cardDiv;
+          firstCard.style.backgroundImage = `url('${card.bg}')`;
+        } else if (clicks === 2) {
+          cardDiv.style.backgroundImage = `url('${card.bg}')`;
+          if (firstCard.dataset.cardNumber !== cardDiv.dataset.cardNumber) {
+            setTimeout(() => {
+              testFirstCard.style.backgroundImage =
+                'url("/assets/CardBackground.png")';
+              cardDiv.style.backgroundImage =
+                'url("/assets/CardBackground.png")';
+            }, 1000);
+          } else {
+            pairs.push(cardDiv, firstCard);
+          }
+          clicks = 0;
+          cardDiv.style.backgroundColor === cardDiv.style.backgroundColor;
+          firstCard = null;
+        }
+        lastClickedCard = cardDiv;
+      }
     }
-    // Ajout de la div au grid-container
-    gridContainer.appendChild(cardDiv);
-    // Ajoutez un gestionnaire d'événements de clic à chaque carte
-    cardDiv.addEventListener('click', () => {
-        
-        // Vérifiez si le nombre de clics est inférieur à 2
-        if (clicks < 2) {
+    if (pairs.length === numberOfPairs * 2) {
+      restartButton.style.display = "block";
+    }
+  }
 
-            if (cardDiv !== lastClickedCard && !pairs.includes(cardDiv)){
-            let testFirstCard = firstCard;
-            // Affichez la carte en inversant ses couleurs
-            // Incrémentez le nombre de clics
-            clicks++;
-            console.log('clicks', clicks);
-            // Si c'est le premier clic, enregistrez la carte
-            if (clicks === 1) {
-                firstCard = cardDiv;
-                firstCard.style.backgroundImage = `url('${card.bg}')`;
-            } else if (clicks === 2) {
-                // Si c'est le deuxième clic, comparez les cartes
-                cardDiv.style.backgroundImage = `url('${card.bg}')`;
-                if (firstCard.dataset.cardNumber !== cardDiv.dataset.cardNumber) {
-                    setTimeout(() => {
-                        testFirstCard.style.backgroundImage = 'url("/assets/CardBackground.png")';
-                        cardDiv.style.backgroundImage = 'url("/assets/CardBackground.png")';
-                    }, 1000);
-                } else {
-                    pairs.push(cardDiv, firstCard);  
+  function updateNumberOfPairs(value) {
+    switch (value) {
+      case "4":
+        numberOfPairs = 4;
+        console.log("cards", cards);
+        break;
+      case "8":
+        numberOfPairs = 8;
+        gridContainer.style.gridTemplateColumns = "repeat(4, 1fr)";
+        gridContainer.style.gridTemplateRows = "repeat(4, 1fr)";
+        break;
+      case "12":
+        numberOfPairs = 12;
+        gridContainer.style.gridTemplateColumns = "repeat(8, 1fr)";
+        break;
+      case "14":
+        numberOfPairs = 14;
+        gridContainer.style.gridTemplateColumns = "repeat(7, 1fr)";
+        break;
+      default:
+        break;
+    }
+  }
+  const choosePairsSpans = document.querySelectorAll(".choosePairsNumber");
+  const chooseDiv = document.querySelector(".choose");
+  choosePairsSpans.forEach((span) => {
+    span.addEventListener("click", () => {
+      const value = span.getAttribute("data-value");
+      updateNumberOfPairs(value);
+        chooseDiv.style.display = "none";
 
-                }
-                // Réinitialisez le compteur de clics et la carte enregistrée
-                clicks = 0;
-                cardDiv.style.backgroundColor === cardDiv.style.backgroundColor;
-                firstCard = null;
-                }
-                lastClickedCard = cardDiv;
-                console.log('lastClickedCard', lastClickedCard);
-            }
-            
-        }
-
-        if(pairs.length === numberOfPairs*2){
-            restart.style.display = "block";
-        }
+      if (!gameInitialized) {
+        startGame();
+        gameInitialized = true;
+      } else {
+        clearGrid();
+      }
     });
-});
+  });
 
-restart.addEventListener('click', () => { 
-   clearGrid();
-});
+  function createAndAddCards() {
+    for (let i = 1; i <= numberOfPairs; i++) {
+      const cardNumber = i + 1;
+      cards.push({ number: cardNumber, color: colors[i], bg: bgIcon[i] });
+      cards.push({ number: cardNumber, color: colors[i], bg: bgIcon[i] });
+      cardColor.push(colors[i]);
+    }
+    shuffleArray(cards);
+    cards.forEach((card) => {
+      const cardDiv = document.createElement("div");
+      cardDiv.className = "card";
+      cardDiv.dataset.cardNumber = card.number;
+      cardDiv.style.backgroundImage = 'url("/assets/CardBackground.png")';
+      if (numberOfPairs >= 12) {
+        cardDiv.style.width = "100px";
+        cardDiv.style.height = "130px";
+      }
+      if (numberOfPairs >= 8){
+        cardDiv.style.width = "130px";
+        cardDiv.style.height = "170px";
+      }
+      gridContainer.appendChild(cardDiv);
+      cardDiv.addEventListener("click", () => cardClickHandler(cardDiv, card));
+    });
+  }
 
-// Fonction pour mélanger le tableau
-function shuffleArray(array) {
-    // Tant que i est plus grand que 0, on décrémente i
+  function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
-        // On génère un nombre aléatoire entre 0 et i
-        const j = Math.floor(Math.random() * (i + 1));
-        // On échange array[i] avec array[j]
-        [array[i], array[j]] = [array[j], array[i]];
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
     }
-}
-
-
-
-
-function ajouterPseudo() {
-    let click = getElementById("event");
-    let pseudo = document.getElementById("pseudoInput");
-    let submit = document.addEventListener("click", click);
-
-    if (pseudo != null){
-    console.log("- " + pseudo);
-    }   else   {
-    echo("Youve entered an invalid name");
+  }
+  function clearGrid() {
+    while (gridContainer.firstChild) {
+      gridContainer.removeChild(gridContainer.firstChild);
     }
+  }
+  function startGame() {
+    cards = [];
+    if (numberOfPairs) {
+      clearGrid();
+      createAndAddCards();
+    }
+  }
+  restartButton.addEventListener("click", () => {
+    clearGrid();
+    console.log("numberOfPairs quand je clique sur restart", numberOfPairs);
+    startGame();
+    chooseDiv.style.display = "flex";
+
+    console.log("Test cards après restart", cards);
+  });
 }
+initGame();

@@ -11,7 +11,17 @@ let clicks = 0;
 let firstCard = null;
 let lastClickedCard = null;
 
+
+
+const imagePaths = [];
+
+  for (let i = 1; i <= 5; i++) {
+    const imageURL = `${'/assets/'}perso${i}.png`;
+    imagePaths.push(imageURL);
+  }
+
 colors = ["red", "blue", "green", "yellow", "purple", "orange", "pink", "brown", "black","grey","lightblue","darkblue","#cecece", "#3b0728", "#c0a441", "#4bff4c","#9d4137"];
+bgIcon = imagePaths.slice();
 
 // Faire un switch case : pour numberOfPairs = 4, 8, 12, 16, en modifiant la valeur de numberOfPairs
 
@@ -25,12 +35,11 @@ for (let i = 1; i <= numberOfPairs; i++) {
     // On crée un objet card avec un numéro et une couleur
     const cardNumber = i + 1;
     // On ajoute deux fois la même carte dans le tableau cards
-    cards.push({number : cardNumber, color: colors[i]  });
-    cards.push({number : cardNumber, color: colors[i]  });
+    cards.push({number : cardNumber, color: colors[i], bg : bgIcon[i]  });
+    cards.push({number : cardNumber, color: colors[i], bg : bgIcon[i] });
 
     cardColor.push(colors[i]);
 }
-
 // Mélangez les cartes de manière aléatoire
 shuffleArray(cards);
 cards.forEach(card => {
@@ -65,14 +74,14 @@ cards.forEach(card => {
             // Si c'est le premier clic, enregistrez la carte
             if (clicks === 1) {
                 firstCard = cardDiv;
-                firstCard.style.backgroundColor = card.color;
+                firstCard.style.backgroundImage = `url('${card.bg}')`;
             } else if (clicks === 2) {
                 // Si c'est le deuxième clic, comparez les cartes
-                cardDiv.style.backgroundColor = card.color;
+                cardDiv.style.backgroundImage = `url('${card.bg}')`;
                 if (firstCard.dataset.cardNumber !== cardDiv.dataset.cardNumber) {
                     setTimeout(() => {
-                        testFirstCard.style.backgroundColor = 'white';
-                        cardDiv.style.backgroundColor = 'white';
+                        testFirstCard.style.backgroundImage = 'none';
+                        cardDiv.style.backgroundImage = 'none';
                     }, 1000);
                 } else {
                     pairs.push(cardDiv, firstCard);  

@@ -47,8 +47,14 @@ function shuffleArray(array) {
 
 
 
-
 function ajouterPseudo() {
+    let click = getElementById("event");
     let pseudo = document.getElementById("pseudoInput");
-    document.write();
+    let submit = document.addEventListener("click", click);
+
+    if (pseudo != null){
+    console.log("- " + pseudo);
+    }   else   {
+    echo("Youve entered an invalid name");
+    }
 }

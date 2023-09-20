@@ -4,18 +4,25 @@ const restart = document.querySelector('button')
 
 
 
-//Tableau qui va stocker les paires
-
 
 let clicks = 0;
 let firstCard = null;
 let lastClickedCard = null;
 
+function clearGrid() {
+    // Sélectionnez le conteneur gridContainer
+    const gridContainer = document.getElementById('tableau');
+
+    // Supprimez tous les éléments enfants du conteneur
+    while (gridContainer.firstChild) {
+        gridContainer.removeChild(gridContainer.firstChild);
+    }
+}
 
 
 const imagePaths = [];
 
-  for (let i = 1; i <= 5; i++) {
+  for (let i = 0; i <= 12; i++) {
     const imageURL = `${'/assets/'}perso${i}.png`;
     imagePaths.push(imageURL);
   }
@@ -24,7 +31,7 @@ colors = ["red", "blue", "green", "yellow", "purple", "orange", "pink", "brown",
 
 // Faire un switch case : pour numberOfPairs = 4, 8, 12, 16, en modifiant la valeur de numberOfPairs
 
-numberOfPairs= 4;
+numberOfPairs= 8;
 cards=[];
 cardColor=[];
 pairs=[];
@@ -104,7 +111,7 @@ cards.forEach(card => {
 });
 
 restart.addEventListener('click', () => { 
-    location.reload();
+   clearGrid();
 });
 
 // Fonction pour mélanger le tableau

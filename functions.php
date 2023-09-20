@@ -11,25 +11,43 @@ if ($connexion->connect_error) {
     die("La connexion à la base de données a échoué : " . $connexion->connect_error);
 }
 
-// Traitement du formulaire
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $pseudo = $_POST["pseudo"];
-    $action = $_POST["action"];
+    if (isset($_POST["player_count"])) {
+        $playerCount = $_POST["player_count"];
 
-    if ($action === "ajouter") {
-        // Ajouter le pseudo dans la base de données
-        $sql = "INSERT INTO user (pseudo) VALUES ('$pseudo')";
-        if ($connexion->query($sql) === TRUE) {
-            echo "Pseudo ajouté avec succès.";
-        } else {
-            echo "Erreur lors de l'ajout du pseudo : " . $connexion->error;
+        // Générer le formulaire en fonction du nombre de joueurs
+        echo '<form method="post" action="functions.php">';
+        for ($i = 1; $i <= $playerCount; $i++) {
+            echo '<label for="player_' . $i . '">Joueur ' . $i . ' : </label>';
+            echo '<input type="text" name="pseudo' . $i . '" id="pseudo' . $i . '" required><br>';
         }
+        echo '<input type="submit" value="Start">';
+        echo '</form>';
     }
+}
 
-    // Récupérer tous les pseudos de la base de données
-    $result = $connexion->query("SELECT pseudo FROM user");
-    $pseudos = [];
-    while ($row = $result->fetch_assoc()) {
-        $pseudos[] = $row["pseudo"];
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST["mode"])) {
+        $mode = $_POST["mode"];
+        if ($mode === "solo") {
+            // Générer le formulaire solo
+            echo '<h2>Votre pseudo</h2>';
+            echo '<form method="post" action="functions.php">';
+            echo '<label for="pseudo">Votre pseudo : </label>';
+            echo '<input type="text" name="pseudo" id="pseudo" required><br>';
+            echo '<input type="submit" value="Start">';
+            echo '</form>';
+        } elseif ($mode === "multi") {
+            // Générer le formulaire multi
+            echo '<h2>Choix du nombre de joueurs</h2>';
+            echo '<form method="post" action="functions.php" id="circle-container">';
+            echo '<button class="circle" name="player_count" value="2">2</button>';
+            echo '<button class="circle" name="player_count" value="3">3</button>';
+            echo '<button class="circle" name="player_count" value="4">4</button>';
+            echo '<button class="circle" name="player_count" value="5">5</button>';
+            echo '</form>';
+        }
     }
 }

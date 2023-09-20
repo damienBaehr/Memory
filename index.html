@@ -1,12 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Puissance 4</title>
+    <link rel="stylesheet" href="style.css">
+    <title>Memory</title>
 </head>
+
 <body>
-    
-</body>
-<script src="script.js"></script>
+    <h2>Choix du nombre de joueurs</h2>
+    <div class="circle-container">
+        <div class="circle">2</div>
+        <div class="circle">3</div>
+        <div class="circle">4</div>
+        <div class="circle">5</div>
+    </div>
+
+
+
+
+
+    <!-- <form action="functions.php" method="post">
+        <div id="champs_pseudo">
+            <label for="pseudo">Pseudo 1 :</label>
+            <input type="text" name="pseudo[]" required>
+            <button type="button" class="supprimer" onclick="supprimerChampPseudo(this)">Supprimer</button>
+        </div>
+        <button class="button" type="button" onclick="ajouterChampPseudo()">Ajouter</button>
+        <button class="button" type="submit" name="action" value="demarrer">Démarrer</button>
+    </form>
+
+    <script>
+        let champPseudoIndex = 2; // Numéro du prochain champ de pseudo à ajouter
+
+        function ajouterChampPseudo() {
+            if (champPseudoIndex <= 5) {
+                const champsPseudo = document.getElementById("champs_pseudo");
+                const nouveauChamp = document.createElement("div");
+                nouveauChamp.innerHTML = `
+                    <label for="pseudo">Pseudo ${champPseudoIndex} :</label>
+                    <input type="text" name="pseudo[]" required>
+                    <button type="button" onclick="supprimerChampPseudo(this)">Supprimer</button>
+                `;
+
+                nouveauChamp.style.marginTop = "10px";
+                champsPseudo.appendChild(nouveauChamp);
+                champPseudoIndex++;
+
+                // Si le bouton "Ajouter" a été cliqué, masquer le bouton "Supprimer" pour le premier champ
+                document.querySelector('#champs_pseudo div:first-child .supprimer').style.display = 'none';
+            } else {
+                alert("Limite de 5 pseudos atteinte.");
+            }
+        }
+
+        function supprimerChampPseudo(button) {
+            const champASupprimer = button.parentNode;
+            const champsPseudo = document.getElementById("champs_pseudo");
+            champsPseudo.removeChild(champASupprimer);
+            champPseudoIndex--;
+        }
+    </script> -->
+
 </html>

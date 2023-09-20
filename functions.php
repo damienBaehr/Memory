@@ -11,7 +11,8 @@ if ($connexion->connect_error) {
     die("La connexion à la base de données a échoué : " . $connexion->connect_error);
 }
 
-function generateForm($mode, $playerCount = 1) {
+function generateForm($mode, $playerCount = 1)
+{
     echo '<form method="post" action="functions.php">';
     if ($mode === "solo") {
         echo '<h2>Votre pseudo</h2>';
@@ -72,9 +73,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         } elseif ($mode === "multi") {
             echo '<h2>Choix du nombre de joueurs</h2>';
-            echo '<form method="post" action="functions.php" id="circle-container">';
+            echo '<form method="post" action="functions.php">';
             for ($i = 2; $i <= 5; $i++) {
-                echo '<button class="circle" name="player_count" value="' . $i . '">' . $i . '</button>';
+                echo '<button name="player_count" value="' . $i . '">' . $i . '</button>';
             }
             echo '</form>';
         }

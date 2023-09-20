@@ -4,6 +4,9 @@
   height: 250px;
   border: 1px solid black;
   cursor: pointer;
+  background-size: 60%;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 #grid-container{
   width: 100%;

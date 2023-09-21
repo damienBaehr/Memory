@@ -7,6 +7,11 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <div class="animated-background">
+      <div class="gradient"></div>
+      <div class="gradient"></div>
+      <div class="gradient"></div>
+    </div>
     <h1>Memory game</h1>
     <main>
       <aside>
@@ -16,11 +21,9 @@
         </fieldset>
         <fieldset>
           <legend>Victoires</legend>
-            Nombres de victoires
+          Nombres de victoires
         </fieldset>
-        <fieldset class="scoreboard">
-            Scoreboard
-        </fieldset>
+        <fieldset class="scoreboard">Scoreboard</fieldset>
       </aside>
       <div class="title">
         <h2>Choisissez le nombre de pairs !</h2>
@@ -29,14 +32,12 @@
       <div class="choose">
         <span class="choosePairsNumber" data-value="4">4</span>
         <span class="choosePairsNumber" data-value="8">8</span>
+        <span class="choosePairsNumber" data-value="10">10</span>
         <span class="choosePairsNumber" data-value="12">12</span>
-        <span class="choosePairsNumber" data-value="14">14</span>
       </div>
     </main>
     <div id="grid-container">
-      <div id="tableau">
-
-      </div>
+      <div id="tableau"></div>
       <div class="content">
         <button>Restart</button>
       </div>
@@ -47,7 +48,7 @@
         <table>
           <tr>
             <th>Numero</th>
-            <th>Nom </th>
+            <th>Nom</th>
             <th>Win</th>
           </tr>
           <tr>

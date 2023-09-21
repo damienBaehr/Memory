@@ -8,6 +8,7 @@ function initGame() {
   const scoreboard = document.querySelector(".scoreboard");
   const closeBtn = document.querySelector(".closeButton");
 
+  let allowCardClicks = true;
   let clicks = 0;
   let firstCard = null;
   let lastClickedCard = null;
@@ -37,7 +38,7 @@ function initGame() {
   }
 
   function cardClickHandler(cardDiv, card) {
-    if (clicks < 2) {
+    if (clicks < 2 && allowCardClicks) {
       if (cardDiv !== lastClickedCard && !pairs.includes(cardDiv)) {
         let testFirstCard = firstCard;
         clicks++;
@@ -47,9 +48,11 @@ function initGame() {
         } else if (clicks === 2) {
           cardDiv.style.backgroundImage = `url('${card.bg}')`;
           if (firstCard.dataset.cardNumber !== cardDiv.dataset.cardNumber) {
+            allowCardClicks = false;
             setTimeout(() => {
               testFirstCard.style.backgroundImage ='url("/assets/CardBackground.png")';
               cardDiv.style.backgroundImage ='url("/assets/CardBackground.png")';
+              allowCardClicks = true;
             }, 1000);
           } else {
             pairs.push(cardDiv, firstCard);

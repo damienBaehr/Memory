@@ -64,6 +64,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["restart"])) {
 </head>
 
 <body>
+  <div class="home">
+    <img src="../assets/maison.png" alt="">
+  </div>
   <div class="animated-background">
     <div class="gradient"></div>
     <div class="gradient"></div>

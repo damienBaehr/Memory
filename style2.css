@@ -10,6 +10,23 @@
   font-family: 'Space Invaders' ,sans-serif;
 }
 
+.home img{
+  width: 50px;
+  padding: 5px;
+
+}
+.home{
+  background: white;
+  position: absolute;
+  right: 100px;
+  top: 0;
+  cursor: pointer;
+}
+.home:hover{
+  background: #073940;
+  color: white;
+}
+
 
 aside{
   display: flex;

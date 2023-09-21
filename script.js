@@ -7,6 +7,7 @@ function initGame() {
   const modal = document.querySelector(".modal");
   const scoreboard = document.querySelector(".scoreboard");
   const closeBtn = document.querySelector(".closeButton");
+  const homeBtn = document.querySelector(".home");
 
   let allowCardClicks = true;
   let clicks = 0;
@@ -22,6 +23,9 @@ function initGame() {
   let pairs = [];
 
   const bgIcon = [];
+  homeBtn.addEventListener("click", () => {
+    window.location.href = "index.html";
+  });
 
 
   function activateModal() {
@@ -101,6 +105,7 @@ function initGame() {
       const value = span.getAttribute("data-value");
       updateNumberOfPairs(value);
         chooseDiv.style.display = "none";
+        scoreboard.style.display = "none";
 
       if (!gameInitialized) {
         startGame();

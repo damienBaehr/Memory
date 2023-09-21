@@ -69,6 +69,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["restart"])) {
   </div>
   <div class="background"></div>
     <div class="overlay"></div>
+    <span class="point first"></span>
+    <span class="point third"></span>
+    <span class="point fourth"></span>
+    <span class="point fived"></span>
+    <span class="point sixed"></span>
   <h1 style='font-size: 65px; margin-bottom: 10px ;'>JEU DU MEMORY</h1>
   <main>
     <aside>

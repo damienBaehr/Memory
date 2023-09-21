@@ -25,7 +25,19 @@ function generateForm($mode, $playerCount = 1)
     if ($mode === "solo") {
         echo '<div id="backPage" onclick="window.location.href=\'index.html\'"> <-- </div>';
         echo '<h2>Votre pseudo</h2>';
+        echo ' <span class="point first"></span>
+        <span class="point second"></span>
+        <span class="point third"></span>
+        <span class="point fourth"></span>
+        <span class="point fived"></span>
+        <span class="point sixed"></span>';
     } else if ($mode === "multi") {
+        echo ' <span class="point first"></span>
+        <span class="point second"></span>
+        <span class="point third"></span>
+        <span class="point fourth"></span>
+        <span class="point fived"></span>
+        <span class="point sixed"></span>';
         echo '<div id="backPage" onclick="window.location.href=\'index.html\'"> <-- </div>';
         echo '<h2>Choix du nombre de joueurs</h2>';
     }

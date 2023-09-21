@@ -16,9 +16,76 @@
 #backPage:hover{
   background: white;
   color: #073940;
-
+}
+.point.first{
+  background: #fafafa;
+  padding: 7px;
+  border-radius: 100px;
+  position: absolute;
+  top: 85px;
+  left: 730px;
+  animation: scintillement 1s ease-in-out 0s infinite;
+}
+.point.second{
+  background: #fafafa;
+  padding: 7px;
+  border-radius: 100px;
+  position: absolute;
+  top: 140px;
+  left: 115px;
+  animation: scintillement 1s ease-in-out 0.5s infinite;
+}
+.point.third{
+  background: #fafafa;
+  padding: 7px;
+  border-radius: 100px;
+  position: absolute;
+  top: 81px;
+  right: 443px;
+  animation: scintillement 1s ease-in-out 1s infinite;
+}
+.point.sixed{
+  background: #fafafa;
+  padding: 7px;
+  border-radius: 100px;
+  position: absolute;
+  top: 287px;
+  right: 269px;
+  animation: scintillement 1s ease-in-out 1s infinite;
+}
+.point.fourth{
+  background: #fafafa;
+  padding: 7px;
+  border-radius: 100px;
+  position: absolute;
+  top: 198px;
+  right: 908px;
+  animation: scintillement 1s ease-in-out 1.5s infinite;
+}
+.point.fived{
+  background: #fafafa;
+  padding: 7px;
+  border-radius: 100px;
+  position: absolute;
+  top: 361px;
+  left: 348px;
+  animation: scintillement 1s ease-in-out 2s infinite;
 }
 
+@keyframes scintillement {
+  0% {
+    opacity: 0.5; /* Opacité réduite au début */
+    transform: scale(1); /* Taille normale au début */
+  }
+  50% {
+    opacity: 1; /* Opacité maximale au milieu de l'animation */
+    transform: scale(1.2); /* Taille légèrement agrandie au milieu */
+  }
+  100% {
+    opacity: 0.5; /* Opacité réduite à la fin */
+    transform: scale(1); /* Taille normale à la fin */
+  }
+}
 body{
   display: flex;
   flex-flow: column;

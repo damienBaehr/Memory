@@ -67,12 +67,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["restart"])) {
   <div class="home">
     <img src="../assets/maison.png" alt="">
   </div>
-  <div class="animated-background">
-    <div class="gradient"></div>
-    <div class="gradient"></div>
-    <div class="gradient"></div>
-  </div>
-  <h1>Memory game</h1>
+  <div class="background"></div>
+    <div class="overlay"></div>
+  <h1 style='font-size: 65px; margin-bottom: 10px ;'>JEU DU MEMORY</h1>
   <main>
     <aside>
       <fieldset>
@@ -98,8 +95,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["restart"])) {
     <div class="choose">
       <span class="choosePairsNumber" data-value="4">4</span>
       <span class="choosePairsNumber" data-value="8">8</span>
+      <span class="choosePairsNumber" data-value="10">10</span>
       <span class="choosePairsNumber" data-value="12">12</span>
-      <span class="choosePairsNumber" data-value="14">14</span>
     </div>
   </main>
   <div id="grid-container">

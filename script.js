@@ -83,15 +83,15 @@ function initGame() {
         break;
       case "8":
         numberOfPairs = 8;
-        gridContainer.style.gridTemplateColumns = "repeat(4, 1fr)";
+        gridContainer.style.gridTemplateColumns = "repeat(8, 1fr)";
         break;
       case "10":
         numberOfPairs = 10;
-        gridContainer.style.gridTemplateColumns = "repeat(8, 1fr)";
+        gridContainer.style.gridTemplateColumns = "repeat(7, 1fr)";
         break;
       case "12":
         numberOfPairs = 12;
-        gridContainer.style.gridTemplateColumns = "repeat(7, 1fr)";
+        gridContainer.style.gridTemplateColumns = "repeat(8, 1fr)";
         break;
       default:
         numberOfPairs = 1;

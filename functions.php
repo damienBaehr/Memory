@@ -31,11 +31,8 @@ function generateForm($mode, $playerCount = 1)
     }
     echo '<form method="post" action="functions.php">';
     if ($mode === "solo") {
-        echo ' <div class="animated-background">
-                <div class="gradient"></div>
-                <div class="gradient"></div>
-                <div class="gradient"></div>
-              </div>
+        echo ' <div class="background"></div>
+        <div class="overlay"></div>
         ';
         echo '<input type="text" name="pseudo" id="pseudo" required><br>';
         echo '<input type="hidden" name="mode" value="solo">';
@@ -46,11 +43,8 @@ function generateForm($mode, $playerCount = 1)
     }
     if ($mode === "multi" || $playerCount > 1) {
         for ($i = 1; $i <= $playerCount; $i++) {
-            echo ' <div class="animated-background">
-                <div class="gradient"></div>
-                <div class="gradient"></div>
-                <div class="gradient"></div>
-              </div>
+            echo ' <div class="background"></div>
+            <div class="overlay"></div>
         ';
             
             echo '<label for="pseudo' . $i .'">Joueur ' . $i .' : </label>';
@@ -137,11 +131,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 }
             }
         } elseif ($mode === "multi") {
-            echo ' <div class="animated-background">
-                <div class="gradient"></div>
-                <div class="gradient"></div>
-                <div class="gradient"></div>
-              </div>
+            echo ' <div class="background"></div>
+            <div class="overlay"></div>
         ';
         echo '<div id="backPage" onclick="window.location.href=\'index.html\'"> <-- </div>';
 

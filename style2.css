@@ -10,20 +10,39 @@
   font-family: 'Space Invaders' ,sans-serif;
 }
 
+.background{
+  background-image: url('./assets/backgroundHero.jpg');
+  background-size: cover;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+.overlay {
+  position: fixed;
+  top: 40%; 
+  left: 0;
+  width: 100%;
+  height: 60%; 
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)); 
+  z-index: 0; 
+  pointer-events: none; 
+}
+
 .home img{
   width: 50px;
   padding: 5px;
 
 }
 .home{
-  background: white;
   position: absolute;
   right: 100px;
   top: 0;
   cursor: pointer;
 }
 .home:hover{
-  background: #073940;
   color: white;
 }
 
@@ -55,7 +74,7 @@ span.choosePairsNumber {
   align-items: center;
   width: 60px; 
   height: 60px; 
-  background-color: #08383F; 
+  background-color: #3091d0; 
   border: 1px solid #fff;
   color: #fff; 
   border-radius: 100%;
@@ -64,7 +83,7 @@ span.choosePairsNumber {
 
 /* Ajoutez ces styles pour changer la couleur de fond lors du survol */
 span.choosePairsNumber:hover {
-  background-color: #0056b3; /* Couleur de fond au survol */
+  background-color: #2dcc6f; /* Couleur de fond au survol */
 }
 
 table th, table td{
@@ -179,7 +198,8 @@ body {
   justify-content: center;
   align-items: center;
   flex-flow: column;
- 
+  z-index: 999;
+
 }
 button{
   padding: 10px 60px;

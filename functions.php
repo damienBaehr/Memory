@@ -38,6 +38,7 @@ function generateForm($mode, $playerCount = 1)
     echo '</form>';
 }
 
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST["player_count"])) {
         $playerCount = $_POST["player_count"];
@@ -57,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     if ($result->num_rows > 0) {
                         // Le pseudo existe déjà, effectuez une mise à jour
-                        $updateQuery = "UPDATE user SET pseudo = '$pseudo' WHERE pseudo = '$pseudo'";
+                        $updateQuery = "UPDATE user SET pseudo = '$pseudo', win = win + 1 WHERE pseudo = '$pseudo'";
                         if ($connexion->query($updateQuery) === TRUE) {
                             echo "Pseudo du joueur $i mis à jour avec succès dans la base de données.<br>";
                         } else {
@@ -92,7 +93,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 if ($result->num_rows > 0) {
                     // Le pseudo existe déjà, effectuez une mise à jour
-                    $updateQuery = "UPDATE user SET pseudo = '$pseudo' WHERE pseudo = '$pseudo'";
+                    $updateQuery = "UPDATE user SET win = win + 1 WHERE pseudo = '$pseudo'";
                     if ($connexion->query($updateQuery) === TRUE) {
                         echo "Pseudo mis à jour avec succès dans la base de données.<br>";
                     } else {

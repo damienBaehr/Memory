@@ -11,6 +11,23 @@
   font-family: 'Space Invaders' ,sans-serif;
 }
 
+
+aside{
+  display: flex;
+  gap: 50px;
+  color: white;
+  flex-flow: column;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 250px;
+  font-size: 15px;
+}
+
+.scoreboard:hover{
+  background: #08383F;
+  cursor: pointer;
+}
 .choose{
   display: flex;
   justify-content: center;
@@ -22,7 +39,8 @@ span.choosePairsNumber {
   align-items: center;
   width: 60px; 
   height: 60px; 
-  background-color: #007bff; 
+  background-color: #08383F; 
+  border: 1px solid #fff;
   color: #fff; 
   border-radius: 100%;
   cursor: pointer;
@@ -31,6 +49,42 @@ span.choosePairsNumber {
 /* Ajoutez ces styles pour changer la couleur de fond lors du survol */
 span.choosePairsNumber:hover {
   background-color: #0056b3; /* Couleur de fond au survol */
+}
+
+table th, table td{
+  border: 1px solid white;
+  padding: 8px;
+  background: #073940;
+}
+
+.modal{
+  color: white;
+  width: 60%;
+  position: relative;
+  display: none;
+}
+.modal.active{
+  display: block;
+}
+.closeButton{
+  position: absolute;
+  top: 0;
+  right: 6%;
+  padding: 15px;
+  cursor: pointer;
+  background: #073940;
+  border: 1px solid white;
+  width: 25px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 25px;
+}
+.modal table{
+  width:80%;
+  margin: 0 auto;
 }
 
 .card{
@@ -50,6 +104,8 @@ body {
   flex-flow: column;
   justify-content: center;
   align-items: center;
+  position: relative;
+  width: 100%;
 }
 
 #grid-container{

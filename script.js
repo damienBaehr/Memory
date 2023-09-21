@@ -4,6 +4,9 @@ function initGame() {
   const restartButton = document.querySelector("button");
   const titleChoose = document.querySelector(".title");
   const titlePlay = document.querySelector(".titlePlay");
+  const modal = document.querySelector(".modal");
+  const scoreboard = document.querySelector(".scoreboard");
+  const closeBtn = document.querySelector(".closeButton");
 
   let clicks = 0;
   let firstCard = null;
@@ -18,6 +21,15 @@ function initGame() {
   let pairs = [];
 
   const bgIcon = [];
+
+  function activateModal() {
+    modal.classList.toggle("active");
+  }
+  function closeModal() {
+    modal.classList.remove("active");
+  }
+  scoreboard.addEventListener("click", activateModal);
+  closeBtn.addEventListener("click", closeModal);
 
   for (let i = 0; i <= 12; i++) {
     const imageURL = `${"/assets/"}perso${i}.png`;
@@ -137,7 +149,7 @@ function initGame() {
     numberOfPairs = 0;
     pairs = [];
   }
-  
+
   function startGame() {
     if (numberOfPairs) {
       titleChoose.style.display = "none";

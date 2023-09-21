@@ -43,12 +43,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             for ($i = 1; $i <= $playerCount; $i++) {
                 if (isset($_POST["pseudo" . $i])) {
                     $pseudo = $_POST["pseudo" . $i];
-                    $sql = "INSERT INTO user (pseudo) VALUES ('$pseudo')";
 
-                    if ($connexion->query($sql) === TRUE) {
-                        echo "Pseudo du joueur $i inséré avec succès dans la base de données.<br>";
+                    // Utilisez mysqli_real_escape_string pour éviter les injections SQL
+                    $pseudo = $connexion->real_escape_string($pseudo);
+
+                    // Vérifiez si le pseudo existe déjà dans la base de données
+                    $checkQuery = "SELECT * FROM user WHERE pseudo = '$pseudo'";
+                    $result = $connexion->query($checkQuery);
+
+                    if ($result->num_rows > 0) {
+                        // Le pseudo existe déjà, effectuez une mise à jour
+                        $updateQuery = "UPDATE user SET pseudo = '$pseudo' WHERE pseudo = '$pseudo'";
+                        if ($connexion->query($updateQuery) === TRUE) {
+                            echo "Pseudo du joueur $i mis à jour avec succès dans la base de données.<br>";
+                        } else {
+                            echo "Erreur lors de la mise à jour du pseudo du joueur $i : " . $connexion->error . "<br>";
+                        }
                     } else {
-                        echo "Erreur lors de l'insertion du pseudo du joueur $i : " . $connexion->error . "<br>";
+                        // Le pseudo n'existe pas, effectuez une insertion
+                        $insertQuery = "INSERT INTO user (pseudo) VALUES ('$pseudo')";
+                        if ($connexion->query($insertQuery) === TRUE) {
+                            echo "Pseudo du joueur $i inséré avec succès dans la base de données.<br>";
+                        } else {
+                            echo "Erreur lors de l'insertion du pseudo du joueur $i : " . $connexion->error . "<br>";
+                        }
                     }
                 }
             }
@@ -61,10 +79,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (isset($_POST["pseudo"])) {
                 $pseudo = $_POST["pseudo"];
 
-                if ($connexion) { // Assurez-vous que la connexion est établie avec succès
-                    $sql = "INSERT INTO user (pseudo) VALUES ('$pseudo')";
+                // Utilisez mysqli_real_escape_string pour éviter les injections SQL
+                $pseudo = $connexion->real_escape_string($pseudo);
 
-                    if ($connexion->query($sql) === TRUE) {
+                // Vérifiez si le pseudo existe déjà dans la base de données
+                $checkQuery = "SELECT * FROM user WHERE pseudo = '$pseudo'";
+                $result = $connexion->query($checkQuery);
+
+                if ($result->num_rows > 0) {
+                    // Le pseudo existe déjà, effectuez une mise à jour
+                    $updateQuery = "UPDATE user SET pseudo = '$pseudo' WHERE pseudo = '$pseudo'";
+                    if ($connexion->query($updateQuery) === TRUE) {
+                        echo "Pseudo mis à jour avec succès dans la base de données.<br>";
+                    } else {
+                        echo "Erreur lors de la mise à jour du pseudo : " . $connexion->error . "<br>";
+                    }
+                } else {
+                    // Le pseudo n'existe pas, effectuez une insertion
+                    $insertQuery = "INSERT INTO user (pseudo) VALUES ('$pseudo')";
+                    if ($connexion->query($insertQuery) === TRUE) {
                         echo "Pseudo inséré avec succès dans la base de données.<br>";
                     } else {
                         echo "Erreur lors de l'insertion du pseudo : " . $connexion->error . "<br>";

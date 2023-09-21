@@ -71,6 +71,7 @@ function initGame() {
     }
     if (pairs.length === numberOfPairs * 2) {
       restartButton.style.display = "block";
+      titlePlay.style.display = "none";
       restartGame()
     }
   }
@@ -83,14 +84,13 @@ function initGame() {
       case "8":
         numberOfPairs = 8;
         gridContainer.style.gridTemplateColumns = "repeat(4, 1fr)";
-        gridContainer.style.gridTemplateRows = "repeat(4, 1fr)";
+        break;
+      case "10":
+        numberOfPairs = 10;
+        gridContainer.style.gridTemplateColumns = "repeat(8, 1fr)";
         break;
       case "12":
         numberOfPairs = 12;
-        gridContainer.style.gridTemplateColumns = "repeat(8, 1fr)";
-        break;
-      case "14":
-        numberOfPairs = 14;
         gridContainer.style.gridTemplateColumns = "repeat(7, 1fr)";
         break;
       default:

@@ -1,3 +1,4 @@
+<link rel="stylesheet" type="text/css" href="style.css">
 <?php
 // Connexion à la base de données
 $serveur = "localhost";
@@ -13,14 +14,17 @@ if ($connexion->connect_error) {
 
 function generateForm($mode, $playerCount = 1)
 {
-    echo '<form method="post" action="functions.php">';
     if ($mode === "solo") {
         echo '<h2>Votre pseudo</h2>';
+    } else if ($mode === "multi") {
+        echo '<h2>Choix du nombre de joueurs</h2>';
+    }
+    echo '<form method="post" action="functions.php">';
+    if ($mode === "solo") {
         echo '<label for="pseudo">Votre pseudo : </label>';
         echo '<input type="text" name="pseudo" id="pseudo" required><br>';
         echo '<input type="hidden" name="mode" value="solo">';
     } elseif ($mode === "multi") {
-        echo '<h2>Choix du nombre de joueurs</h2>';
         echo '<input type="hidden" name="mode" value="multi">';
         echo '<input type="hidden" name="player_count" value="' . $playerCount . '">';
     }
@@ -108,7 +112,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo '<h2>Choix du nombre de joueurs</h2>';
             echo '<form method="post" action="functions.php">';
             for ($i = 2; $i <= 5; $i++) {
-                echo '<button name="player_count" value="' . $i . '">' . $i . '</button>';
+                echo '<button class="mode" name="player_count" value="' . $i . '">' . $i . '</button>';
             }
             echo '</form>';
         }

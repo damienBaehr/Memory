@@ -1,3 +1,20 @@
 h2 {
   text-align: center;
 }
+
+form {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  align-items: center;
+}
+
+.mode,
+input[type=submit] {
+  border: none;
+  border-radius: 20%;
+  padding: 10px;
+  background-color: blue;
+  color: white;
+  cursor: pointer;
+}

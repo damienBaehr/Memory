@@ -1,5 +1,8 @@
 <link rel="stylesheet" type="text/css" href="style.css">
 <?php
+
+session_start(); // Démarrez la session
+
 // Connexion à la base de données
 $serveur = "localhost";
 $utilisateur = "root";
@@ -95,7 +98,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     // Le pseudo existe déjà, effectuez une mise à jour
                     $updateQuery = "UPDATE user SET pseudo = '$pseudo' WHERE pseudo = '$pseudo'";
                     if ($connexion->query($updateQuery) === TRUE) {
-                        header("Location: jeu.html");;
+                        $_SESSION["pseudo"] = $pseudo;
+                        header("Location: jeu.php");;
                     } else {
                         echo "Erreur lors de la mise à jour du pseudo du joueur $i : " . $connexion->error . "<br>";
                     }
@@ -103,7 +107,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     // Le pseudo n'existe pas, effectuez une insertion
                     $insertQuery = "INSERT INTO user (pseudo) VALUES ('$pseudo')";
                     if ($connexion->query($insertQuery) === TRUE) {
-                        header("Location: jeu.html");
+                        header("Location: jeu.php");
                     } else {
                         echo "Erreur lors de l'insertion du pseudo : " . $connexion->error . "<br>";
                     }
@@ -119,3 +123,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 }
+?>

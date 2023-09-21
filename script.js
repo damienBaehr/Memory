@@ -2,6 +2,11 @@
 function initGame() {
   const gridContainer = document.getElementById("tableau");
   const restartButton = document.querySelector("button");
+  const titleChoose = document.querySelector(".title");
+  const titlePlay = document.querySelector(".titlePlay");
+  const modal = document.querySelector(".modal");
+  const scoreboard = document.querySelector(".scoreboard");
+  const closeBtn = document.querySelector(".closeButton");
 
   let clicks = 0;
   let firstCard = null;
@@ -17,6 +22,15 @@ function initGame() {
 
   const bgIcon = [];
 
+  function activateModal() {
+    modal.classList.toggle("active");
+  }
+  function closeModal() {
+    modal.classList.remove("active");
+  }
+  scoreboard.addEventListener("click", activateModal);
+  closeBtn.addEventListener("click", closeModal);
+
   for (let i = 0; i <= 12; i++) {
     const imageURL = `${"/assets/"}perso${i}.png`;
     bgIcon.push(imageURL);
@@ -27,7 +41,6 @@ function initGame() {
       if (cardDiv !== lastClickedCard && !pairs.includes(cardDiv)) {
         let testFirstCard = firstCard;
         clicks++;
-        console.log("clicks", clicks);
         if (clicks === 1) {
           firstCard = cardDiv;
           firstCard.style.backgroundImage = `url('${card.bg}')`;
@@ -58,7 +71,6 @@ function initGame() {
     switch (value) {
       case "4":
         numberOfPairs = 4;
-        console.log("cards", cards);
         break;
       case "8":
         numberOfPairs = 8;
@@ -130,17 +142,18 @@ function initGame() {
   function clearGrid() {
     const cardElements = document.querySelectorAll(".card");
     
-    // Supprimer toutes les cartes de la gridContainer
     cardElements.forEach((card) => {
       gridContainer.removeChild(card);
     });
-    // Réinitialiser les données du jeu
     cards = [];
     numberOfPairs = 0;
     pairs = [];
   }
+
   function startGame() {
     if (numberOfPairs) {
+      titleChoose.style.display = "none";
+      titlePlay.style.display = "block";
       createAndAddCards();
     }
   }
@@ -152,6 +165,8 @@ function initGame() {
       chooseDiv.style.display = "flex";
       restartButton.style.display = "none";
       gameInitialized = false;
+      titlePlay.style.display = "none";
+      titleChoose.style.display = "block";
     }
   });
  }

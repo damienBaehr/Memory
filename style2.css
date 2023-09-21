@@ -1,42 +1,93 @@
+
 @font-face {
     font-family: 'Space Invaders';
     src: url('../fonts/space_invaders.ttf') format('truetype');
-}
-
-*,
-*::before,
-*::after {
+  }
+  
+  *, *::before, *::after {
     box-sizing: border-box;
     overflow-y: hidden;
     overflow-x: hidden;
-    font-family: 'Space Invaders', sans-serif;
-}
-
-.choose {
+    font-family: 'Space Invaders' ,sans-serif;
+  }
+  
+  
+  aside{
+    display: flex;
+    gap: 50px;
+    color: white;
+    flex-flow: column;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 250px;
+    font-size: 15px;
+  }
+  
+  .scoreboard:hover{
+    background: #08383F;
+    cursor: pointer;
+  }
+  .choose{
     display: flex;
     justify-content: center;
     gap: 40px;
-}
-
-span.choosePairsNumber {
+  }
+  span.choosePairsNumber {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 60px;
-    height: 60px;
-    background-color: #007bff;
-    color: #fff;
+    width: 60px; 
+    height: 60px; 
+    background-color: #08383F; 
+    border: 1px solid #fff;
+    color: #fff; 
     border-radius: 100%;
     cursor: pointer;
-}
-
-/* Ajoutez ces styles pour changer la couleur de fond lors du survol */
-span.choosePairsNumber:hover {
-    background-color: #0056b3;
-    /* Couleur de fond au survol */
-}
-
-.card {
+  }
+  
+  /* Ajoutez ces styles pour changer la couleur de fond lors du survol */
+  span.choosePairsNumber:hover {
+    background-color: #0056b3; /* Couleur de fond au survol */
+  }
+  
+  table th, table td{
+    border: 1px solid white;
+    padding: 8px;
+    background: #073940;
+  }
+  
+  .modal{
+    color: white;
+    width: 60%;
+    position: relative;
+    display: none;
+  }
+  .modal.active{
+    display: block;
+  }
+  .closeButton{
+    position: absolute;
+    top: 0;
+    right: 6%;
+    padding: 15px;
+    cursor: pointer;
+    background: #073940;
+    border: 1px solid white;
+    width: 25px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 25px;
+  }
+  .modal table{
+    width:80%;
+    margin: 0 auto;
+  }
+  
+  .card{
     width: 150px;
     display: flex;
     height: 200px;
@@ -44,9 +95,8 @@ span.choosePairsNumber:hover {
     background-position: center;
     background-size: 100%;
     background-repeat: no-repeat;
-}
-
-body {
+  }
+  body {
     background: radial-gradient(ellipse at center, #000000 0%, #1a1a1a 30%, #073940 50%, #1a1a1a 70%, #000000 100%);
     background-size: cover;
     background-attachment: fixed;
@@ -54,43 +104,53 @@ body {
     flex-flow: column;
     justify-content: center;
     align-items: center;
-}
-
-#grid-container {
+    position: relative;
+    width: 100%;
+  }
+  
+  #grid-container{
     width: 100%;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-flow: column;
-
-}
-
-button {
+   
+  }
+  button{
     padding: 10px 60px;
     font-size: 18px;
     display: none;
-}
-
-#tableau {
+  }
+  #tableau{
     gap: 20px;
     justify-content: center;
     align-items: center;
     flex-flow: wrap;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, 1fr); 
     gap: 20px;
     align-items: center;
     margin: 20px 0;
-}
-
-
-h1 {
+  }
+  .titlePlay{
+    display: flex;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+    margin: 20px 0;
+    display: none;
+  }
+  
+  
+  h1{
     color: white;
     text-transform: uppercase;
-}
-
-.title h2 {
+  }
+  .title h2{
     color: white;
     ;
-}
+  }
+  
+  

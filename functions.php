@@ -58,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     if ($result->num_rows > 0) {
                         // Le pseudo existe déjà, effectuez une mise à jour
-                        $updateQuery = "UPDATE user SET pseudo = '$pseudo', win = win + 1 WHERE pseudo = '$pseudo'";
+                        $updateQuery = "UPDATE user SET pseudo = '$pseudo' WHERE pseudo = '$pseudo'";
                         if ($connexion->query($updateQuery) === TRUE) {
                             echo "Pseudo du joueur $i mis à jour avec succès dans la base de données.<br>";
                         } else {
@@ -93,17 +93,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 if ($result->num_rows > 0) {
                     // Le pseudo existe déjà, effectuez une mise à jour
-                    $updateQuery = "UPDATE user SET win = win + 1 WHERE pseudo = '$pseudo'";
+                    $updateQuery = "UPDATE user SET pseudo = '$pseudo' WHERE pseudo = '$pseudo'";
                     if ($connexion->query($updateQuery) === TRUE) {
-                        echo "Pseudo mis à jour avec succès dans la base de données.<br>";
+                        header("Location: jeu.html");;
                     } else {
-                        echo "Erreur lors de la mise à jour du pseudo : " . $connexion->error . "<br>";
+                        echo "Erreur lors de la mise à jour du pseudo du joueur $i : " . $connexion->error . "<br>";
                     }
                 } else {
                     // Le pseudo n'existe pas, effectuez une insertion
                     $insertQuery = "INSERT INTO user (pseudo) VALUES ('$pseudo')";
                     if ($connexion->query($insertQuery) === TRUE) {
-                        echo "Pseudo inséré avec succès dans la base de données.<br>";
+                        header("Location: jeu.html");
                     } else {
                         echo "Erreur lors de l'insertion du pseudo : " . $connexion->error . "<br>";
                     }

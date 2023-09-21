@@ -1,0 +1,96 @@
+@font-face {
+    font-family: 'Space Invaders';
+    src: url('../fonts/space_invaders.ttf') format('truetype');
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    font-family: 'Space Invaders', sans-serif;
+}
+
+.choose {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+span.choosePairsNumber {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 100%;
+    cursor: pointer;
+}
+
+/* Ajoutez ces styles pour changer la couleur de fond lors du survol */
+span.choosePairsNumber:hover {
+    background-color: #0056b3;
+    /* Couleur de fond au survol */
+}
+
+.card {
+    width: 150px;
+    display: flex;
+    height: 200px;
+    cursor: pointer;
+    background-position: center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+body {
+    background: radial-gradient(ellipse at center, #000000 0%, #1a1a1a 30%, #073940 50%, #1a1a1a 70%, #000000 100%);
+    background-size: cover;
+    background-attachment: fixed;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#grid-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+
+}
+
+button {
+    padding: 10px 60px;
+    font-size: 18px;
+    display: none;
+}
+
+#tableau {
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    flex-flow: wrap;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    align-items: center;
+    margin: 20px 0;
+}
+
+
+h1 {
+    color: white;
+    text-transform: uppercase;
+}
+
+.title h2 {
+    color: white;
+    ;
+}

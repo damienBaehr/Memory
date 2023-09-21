@@ -64,6 +64,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["restart"])) {
 </head>
 
 <body>
+  <div class="animated-background">
+    <div class="gradient"></div>
+    <div class="gradient"></div>
+    <div class="gradient"></div>
+  </div>
   <h1>Memory game</h1>
   <main>
     <aside>

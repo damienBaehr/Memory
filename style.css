@@ -1,20 +1,95 @@
-h2 {
-  text-align: center;
+@font-face {
+  font-family: 'Space Invaders';
+  src: url('../fonts/space_invaders.ttf') format('truetype');
 }
 
-form {
+body{
   display: flex;
-  justify-content: center;
-  gap: 20px;
+  flex-flow: column;
   align-items: center;
+  justify-content: center;
+  height: 60vh;
 }
 
-.mode,
-input[type=submit] {
-  border: none;
-  border-radius: 20%;
-  padding: 10px;
-  background-color: blue;
+*, *::before, *::after {
+  box-sizing: border-box;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  font-family: 'Space Invaders' ,sans-serif;
+}
+
+.animated-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Assurez-vous que le fond animé soit en arrière-plan */
+  pointer-events: none; /* Évitez d'interférer avec le contenu de la page */
+  overflow: hidden;
+}
+
+.gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  animation: backgroundAnimation 5s linear infinite;
+  z-index: -1;
+  opacity: 0;
+}
+
+
+@keyframes backgroundAnimation {
+  0% {
+      opacity: 0;
+  }
+  10%, 90% {
+      opacity: 1;
+  }
+  100% {
+      opacity: 0;
+  }
+}
+
+.gradient:nth-child(1) {
+  background: radial-gradient(ellipse at center, #000000 0%, #1a1a1a 30%, #073940 50%, #1a1a1a 70%, #000000 100%);
+  animation-delay: 0s;
+}
+
+.gradient:nth-child(2) {
+  background: radial-gradient(ellipse at center, #000000 0%, #1a1a1a 30%, #001f3f 50%, #1a1a1a 70%, #000000 100%);
+  animation-delay: 2.5s; 
+}
+
+.gradient:nth-child(3) {
+  background: radial-gradient(ellipse at center, #000000 0%, #1a1a1a 30%, #073940 50%, #1a1a1a 70%, #000000 100%);
+  animation-delay: 5s;
+}
+
+.title, label, h2{
   color: white;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+}
+
+form{
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+form button, input{
+  width: 300px;
+  padding: 5px 30px;
+}
+form button:hover, input:focus, input[type=submit]:hover{
+  background-color: #1a1a1a;
+  color: white;
+  border: 1px solid white;
   cursor: pointer;
 }

@@ -18,23 +18,39 @@ if ($connexion->connect_error) {
 function generateForm($mode, $playerCount = 1)
 {
     if ($mode === "solo") {
+
         echo '<h2>Votre pseudo</h2>';
     } else if ($mode === "multi") {
+        
         echo '<h2>Choix du nombre de joueurs</h2>';
     }
     echo '<form method="post" action="functions.php">';
     if ($mode === "solo") {
-        echo '<label for="pseudo">Votre pseudo : </label>';
+        echo ' <div class="animated-background">
+                <div class="gradient"></div>
+                <div class="gradient"></div>
+                <div class="gradient"></div>
+              </div>
+        ';
         echo '<input type="text" name="pseudo" id="pseudo" required><br>';
         echo '<input type="hidden" name="mode" value="solo">';
     } elseif ($mode === "multi") {
+        
         echo '<input type="hidden" name="mode" value="multi">';
         echo '<input type="hidden" name="player_count" value="' . $playerCount . '">';
     }
     if ($mode === "multi" || $playerCount > 1) {
         for ($i = 1; $i <= $playerCount; $i++) {
-            echo '<label for="pseudo' . $i . '">Joueur ' . $i . ' : </label>';
-            echo '<input type="text" name="pseudo' . $i . '" id="pseudo' . $i . '" required><br>';
+
+            echo ' <div class="animated-background">
+                <div class="gradient"></div>
+                <div class="gradient"></div>
+                <div class="gradient"></div>
+              </div>
+        ';
+            
+            echo '<label for="pseudo' . $i .'">Joueur ' . $i .' : </label>';
+            echo '<input type="text" name="pseudo' . $i . '" id="pseudo' . $i .'" required><br>';
         }
     }
     echo '<input type="submit" value="Start">';
@@ -63,7 +79,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         // Le pseudo existe déjà, effectuez une mise à jour
                         $updateQuery = "UPDATE user SET pseudo = '$pseudo' WHERE pseudo = '$pseudo'";
                         if ($connexion->query($updateQuery) === TRUE) {
-                            echo "Pseudo du joueur $i mis à jour avec succès dans la base de données.<br>";
+                            $_SESSION["pseudo"] = $pseudo;
+                            header("Location: jeu.php");
                         } else {
                             echo "Erreur lors de la mise à jour du pseudo du joueur $i : " . $connexion->error . "<br>";
                         }
@@ -71,7 +88,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         // Le pseudo n'existe pas, effectuez une insertion
                         $insertQuery = "INSERT INTO user (pseudo) VALUES ('$pseudo')";
                         if ($connexion->query($insertQuery) === TRUE) {
-                            echo "Pseudo du joueur $i inséré avec succès dans la base de données.<br>";
+                            $_SESSION["pseudo"] = $pseudo;
+                            header("Location: jeu.php");
                         } else {
                             echo "Erreur lors de l'insertion du pseudo du joueur $i : " . $connexion->error . "<br>";
                         }
@@ -99,7 +117,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $updateQuery = "UPDATE user SET pseudo = '$pseudo' WHERE pseudo = '$pseudo'";
                     if ($connexion->query($updateQuery) === TRUE) {
                         $_SESSION["pseudo"] = $pseudo;
-                        header("Location: jeu.php");;
+                        header("Location: jeu.php");
                     } else {
                         echo "Erreur lors de la mise à jour du pseudo du joueur $i : " . $connexion->error . "<br>";
                     }
@@ -107,6 +125,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     // Le pseudo n'existe pas, effectuez une insertion
                     $insertQuery = "INSERT INTO user (pseudo) VALUES ('$pseudo')";
                     if ($connexion->query($insertQuery) === TRUE) {
+                        $_SESSION["pseudo"] = $pseudo;
                         header("Location: jeu.php");
                     } else {
                         echo "Erreur lors de l'insertion du pseudo : " . $connexion->error . "<br>";
@@ -114,10 +133,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 }
             }
         } elseif ($mode === "multi") {
+            echo ' <div class="animated-background">
+                <div class="gradient"></div>
+                <div class="gradient"></div>
+                <div class="gradient"></div>
+              </div>
+        ';
             echo '<h2>Choix du nombre de joueurs</h2>';
             echo '<form method="post" action="functions.php">';
-            for ($i = 2; $i <= 5; $i++) {
-                echo '<button class="mode" name="player_count" value="' . $i . '">' . $i . '</button>';
+            for ($i = 2; $i <= 2; $i++) {
+                echo '<button class="mode" name="player_count" value="' . $i . '">' . $i ." (Avec un ordi)". '</button>';
             }
             echo '</form>';
         }

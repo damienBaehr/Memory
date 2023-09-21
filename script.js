@@ -1,4 +1,3 @@
-let initialNumberOfPairs = 8;
 
 function initGame() {
   const gridContainer = document.getElementById("tableau");
@@ -10,12 +9,11 @@ function initGame() {
 
   let gameInitialized = false;
 
-  const colors = ["red","blue","green","yellow","purple","orange","pink","brown","black","grey","lightblue","darkblue","#cecece","#3b0728","#c0a441","#4bff4c","#9d4137",
-  ];
-  let numberOfPairs = initialNumberOfPairs;
+  const colors = ["red","blue","green","yellow","purple","orange","pink","brown","black","grey","lightblue","darkblue","#cecece","#3b0728","#c0a441","#4bff4c","#9d4137",];
+  let numberOfPairs = 0;
   let cards = [];
   const cardColor = [];
-  const pairs = [];
+  let pairs = [];
 
   const bgIcon = [];
 
@@ -37,10 +35,8 @@ function initGame() {
           cardDiv.style.backgroundImage = `url('${card.bg}')`;
           if (firstCard.dataset.cardNumber !== cardDiv.dataset.cardNumber) {
             setTimeout(() => {
-              testFirstCard.style.backgroundImage =
-                'url("/assets/CardBackground.png")';
-              cardDiv.style.backgroundImage =
-                'url("/assets/CardBackground.png")';
+              testFirstCard.style.backgroundImage ='url("/assets/CardBackground.png")';
+              cardDiv.style.backgroundImage ='url("/assets/CardBackground.png")';
             }, 1000);
           } else {
             pairs.push(cardDiv, firstCard);
@@ -54,6 +50,7 @@ function initGame() {
     }
     if (pairs.length === numberOfPairs * 2) {
       restartButton.style.display = "block";
+      restartGame()
     }
   }
 
@@ -77,6 +74,7 @@ function initGame() {
         gridContainer.style.gridTemplateColumns = "repeat(7, 1fr)";
         break;
       default:
+        numberOfPairs = 1;
         break;
     }
   }
@@ -130,24 +128,32 @@ function initGame() {
     }
   }
   function clearGrid() {
-    while (gridContainer.firstChild) {
-      gridContainer.removeChild(gridContainer.firstChild);
-    }
+    const cardElements = document.querySelectorAll(".card");
+    
+    // Supprimer toutes les cartes de la gridContainer
+    cardElements.forEach((card) => {
+      gridContainer.removeChild(card);
+    });
+    // Réinitialiser les données du jeu
+    cards = [];
+    numberOfPairs = 0;
+    pairs = [];
   }
   function startGame() {
-    cards = [];
     if (numberOfPairs) {
-      clearGrid();
       createAndAddCards();
     }
   }
-  restartButton.addEventListener("click", () => {
-    clearGrid();
-    console.log("numberOfPairs quand je clique sur restart", numberOfPairs);
-    startGame();
-    chooseDiv.style.display = "flex";
 
-    console.log("Test cards après restart", cards);
+ function restartGame(){
+  restartButton.addEventListener("click", () => {
+    if(gameInitialized){
+      clearGrid();
+      chooseDiv.style.display = "flex";
+      restartButton.style.display = "none";
+      gameInitialized = false;
+    }
   });
+ }
 }
 initGame();

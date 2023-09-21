@@ -77,6 +77,15 @@ button{
   align-items: center;
   margin: 20px 0;
 }
+.titlePlay{
+  display: flex;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+  margin: 20px 0;
+  display: none;
+}
 
 
 h1{

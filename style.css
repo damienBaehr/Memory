@@ -3,12 +3,28 @@
   src: url('../fonts/space_invaders.ttf') format('truetype');
 }
 
+#backPage{
+  background: #073940;
+  color: white;
+  padding: 10px;
+  position: absolute;
+  top: 50px;
+  left: 150px;
+  cursor: pointer;
+}
+#backPage:hover{
+  background: white;
+  color: #073940;
+
+}
+
 body{
   display: flex;
   flex-flow: column;
   align-items: center;
   justify-content: center;
   height: 60vh;
+  position: relative;
 }
 
 *, *::before, *::after {

@@ -23,6 +23,7 @@ function initGame() {
 
   const bgIcon = [];
 
+
   function activateModal() {
     modal.classList.toggle("active");
   }

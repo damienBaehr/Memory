@@ -15,13 +15,18 @@ if ($connexion->connect_error) {
     die("La connexion à la base de données a échoué : " . $connexion->connect_error);
 }
 
+function back()
+{
+    header("Location: index.html");
+}
+
 function generateForm($mode, $playerCount = 1)
 {
     if ($mode === "solo") {
-
+        echo '<div id="backPage" onclick="window.location.href=\'index.html\'"> <-- </div>';
         echo '<h2>Votre pseudo</h2>';
     } else if ($mode === "multi") {
-        
+        echo '<div id="backPage" onclick="window.location.href=\'index.html\'"> <-- </div>';
         echo '<h2>Choix du nombre de joueurs</h2>';
     }
     echo '<form method="post" action="functions.php">';
@@ -35,7 +40,7 @@ function generateForm($mode, $playerCount = 1)
         echo '<input type="text" name="pseudo" id="pseudo" required><br>';
         echo '<input type="hidden" name="mode" value="solo">';
     } elseif ($mode === "multi") {
-        
+           
         echo '<input type="hidden" name="mode" value="multi">';
         echo '<input type="hidden" name="player_count" value="' . $playerCount . '">';
     }
@@ -138,6 +143,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="gradient"></div>
               </div>
         ';
+        echo '<div id="backPage" onclick="window.location.href=\'index.html\'"> <-- </div>';
+
             echo '<h2>Choix du nombre de joueurs</h2>';
             echo '<form method="post" action="functions.php">';
             for ($i = 2; $i <= 2; $i++) {

@@ -31,9 +31,25 @@ $resultWins = $connexion->query($sqlWins);
 
 // Vérifiez si la requête a réussi
 if ($resultWins) {
-    $rowWins = $resultWins->fetch_assoc();
-    $victoiresJoueur = $rowWins['win'];
+  $rowWins = $resultWins->fetch_assoc();
+  $victoiresJoueur = $rowWins['win'];
 }
+
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["restart"])) {
+  // Incrémentez le nombre de victoires
+  $victoiresJoueur++; // Augmentez le nombre de victoires de 1
+
+  // Mettez à jour le nombre de victoires dans la base de données
+  $updateWinsQuery = "UPDATE user SET win = $victoiresJoueur WHERE pseudo = '$pseudo'";
+
+  if ($connexion->query($updateWinsQuery) === TRUE) {
+    // La mise à jour a réussi, vous pouvez rediriger l'utilisateur vers la page du jeu ou effectuer d'autres actions.
+    header("Location: jeu.php");
+  } else {
+    echo "Erreur lors de la mise à jour des victoires : " . $connexion->error;
+  }
+}
+
 ?>
 
 
@@ -83,7 +99,9 @@ if ($resultWins) {
 
     </div>
     <div class="content">
-      <button>Restart</button>
+      <form method="post" action="">
+        <button type="submit" name="restart">Restart</button>
+      </form>
     </div>
   </div>
 

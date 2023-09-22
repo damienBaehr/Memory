@@ -41,12 +41,12 @@ function generateForm($mode, $playerCount = 1)
         echo '<div id="backPage" onclick="window.location.href=\'index.html\'"> <-- </div>';
         echo '<h2>Choix du nombre de joueurs</h2>';
     }
-    echo '<form method="post" action="functions.php">';
+    echo '<form method="post" class="formSolo" action="functions.php">';
     if ($mode === "solo") {
         echo ' <div class="background"></div>
         <div class="overlay"></div>
         ';
-        echo '<input type="text" name="pseudo" id="pseudo" required><br>';
+        echo '<input type="text" name="pseudo" placeholder="Tapez votre pseudo !ù" id="pseudo" required><br>';
         echo '<input type="hidden" name="mode" value="solo">';
     } elseif ($mode === "multi") {
            

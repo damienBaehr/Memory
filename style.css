@@ -53,6 +53,9 @@
   right: 269px;
   animation: scintillement 1s ease-in-out 1s infinite;
 }
+.formSolo{
+  gap: 0;
+}
 .point.fourth{
   background: #fafafa;
   padding: 7px;

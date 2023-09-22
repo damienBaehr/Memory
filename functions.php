@@ -46,7 +46,7 @@ function generateForm($mode, $playerCount = 1)
         echo ' <div class="background"></div>
         <div class="overlay"></div>
         ';
-        echo '<input type="text" name="pseudo" placeholder="Tapez votre pseudo !ù" id="pseudo" required><br>';
+        echo '<input type="text" name="pseudo" placeholder="Tapez votre pseudo !" id="pseudo" required><br>';
         echo '<input type="hidden" name="mode" value="solo">';
     } elseif ($mode === "multi") {
            
